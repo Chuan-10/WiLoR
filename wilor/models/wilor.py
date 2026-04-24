@@ -139,6 +139,10 @@ class WiLoR(pl.LightningModule):
         output['pred_cam_t'] = pred_cam_t
         output['focal_length'] = focal_length
 
+        output['mano_global_orient'] = pred_mano_params['global_orient']
+        output['mano_hand_pose'] = pred_mano_params['hand_pose']
+        output['mano_betas'] = pred_mano_params['betas']
+
         # Compute model vertices, joints and the projected joints
         pred_mano_params['global_orient'] = pred_mano_params['global_orient'].reshape(batch_size, -1, 3, 3)
         pred_mano_params['hand_pose'] = pred_mano_params['hand_pose'].reshape(batch_size, -1, 3, 3)
